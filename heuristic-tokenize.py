@@ -234,8 +234,8 @@ def sent_tokenize_rules(text):
         for i in range(start,n+1):
             if re.search('(\n\s*\d+\.)',segment) is not None:
                 matching_text = re.search('(\n\s*\d+\.)',segment).groups()[0]
-            prefix  = segment[:segment.index(matching_text) ].strip()
-            segment = segment[ segment.index(matching_text):].strip()
+                prefix  = segment[:segment.index(matching_text) ].strip()
+                segment = segment[ segment.index(matching_text):].strip()
 
             if len(prefix)>0:
                 new_segments.append(prefix)
