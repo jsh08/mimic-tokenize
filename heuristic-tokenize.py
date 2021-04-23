@@ -4,7 +4,7 @@ import sys
 import nltk
 import re
 import os
-
+import pandas as pd
 
 def main():
 
@@ -23,20 +23,24 @@ def main():
     '''
 
     for mimic_note_file in sys.argv[1:]:
-        print mimic_note_file
+        print(mimic_note_file)
 
         with open(mimic_note_file, 'r') as f:
             text = f.read()
 
         # tokenize
         sents = discharge_tokenize(text)
-
+        sents_list = []
         for sent in sents:
-            print '-'*40
-            print sent
-            print '='*40
-            print '\n\n'
-
+            #print '-'*40
+            #print sent
+            #print '='*40
+            #print '\n\n'
+            sents_list.append(sent)
+            
+    sents_df = pd.Series(sents_list)
+    sents_df.to_csv(mimic_note_file[:-4] + "_sents.csv")
+    
 
 
 def discharge_tokenize(text):
@@ -73,13 +77,13 @@ def discharge_tokenize(text):
     # break into many segments
     segments = sent_tokenize_rules(text)
 
-    '''
+    
     # run nltk tokenizer on these segments to split prose
     sents = []
     for segment in segments:
         s = nltk.sent_tokenize(segment)
         sents += s
-    '''
+    
 
     # put the PHI back
     for i in range(len(sents)):
@@ -228,7 +232,8 @@ def sent_tokenize_rules(text):
         # break each list into its own line
         # challenge: not clear how to tell when the list ends if more text happens next
         for i in range(start,n+1):
-            matching_text = re.search('(\n\s*\d+\.)',segment).groups()[0]
+            if re.search('(\n\s*\d+\.)',segment) is not None:
+                matching_text = re.search('(\n\s*\d+\.)',segment).groups()[0]
             prefix  = segment[:segment.index(matching_text) ].strip()
             segment = segment[ segment.index(matching_text):].strip()
 
