@@ -232,8 +232,9 @@ def sent_tokenize_rules(text):
         # break each list into its own line
         # challenge: not clear how to tell when the list ends if more text happens next
         for i in range(start,n+1):
-            if re.search('(\n\s*\d+\.)',segment) is not None:
-                matching_text = re.search('(\n\s*\d+\.)',segment).groups()[0]
+            search_seg = re.search('(\n\s*\d+\.)',segment)
+            if search_seg is not None:
+                matching_text = search_seg.groups()[0]
                 prefix  = segment[:segment.index(matching_text) ].strip()
                 segment = segment[ segment.index(matching_text):].strip()
 
