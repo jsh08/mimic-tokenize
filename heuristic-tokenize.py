@@ -36,7 +36,8 @@ def main():
             #print sent
             #print '='*40
             #print '\n\n'
-            sents_list.append(sent)
+            new_sent = sent.replace('\n',' ')
+            sents_list.append(new_sent)
             
         #sents_df = pd.Series(sents_list)
         #sents_df.to_csv(mimic_note_file[:-4] + "_sents.csv")
