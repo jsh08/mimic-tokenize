@@ -23,7 +23,7 @@ def main():
     '''
 
     for mimic_note_file in sys.argv[1:]:
-        print(mimic_note_file)
+        #print(mimic_note_file)
 
         with open(mimic_note_file, 'r') as f:
             text = f.read()
@@ -38,8 +38,9 @@ def main():
             #print '\n\n'
             sents_list.append(sent)
             
-        sents_df = pd.Series(sents_list)
-        sents_df.to_csv(mimic_note_file[:-4] + "_sents.csv")
+        #sents_df = pd.Series(sents_list)
+        #sents_df.to_csv(mimic_note_file[:-4] + "_sents.csv")
+        print(sents_list)
     
 
 
