@@ -22,26 +22,26 @@ def main():
     sents = discharge_tokenize(text)
     '''
 
-    for mimic_note_file in sys.argv[1:]:
-        #print(mimic_note_file)
+    mimic_note_file = sys.argv[1:]
+    #print(mimic_note_file)
 
-        with open(mimic_note_file, 'r') as f:
-            text = f.read()
+    #with open(mimic_note_file, 'r') as f:
+    #    text = f.read()
 
-        # tokenize
-        sents = discharge_tokenize(text)
-        sents_list = []
-        for sent in sents:
-            #print '-'*40
-            #print sent
-            #print '='*40
-            #print '\n\n'
-            new_sent = sent.replace('\n',' ')
-            sents_list.append(new_sent)
-            
-        #sents_df = pd.Series(sents_list)
-        #sents_df.to_csv(mimic_note_file[:-4] + "_sents.csv")
-        print(sents_list)
+    # tokenize
+    sents = discharge_tokenize(mimic_note_file)
+    sents_list = []
+    for sent in sents:
+        #print '-'*40
+        #print sent
+        #print '='*40
+        #print '\n\n'
+        new_sent = sent.replace('\n',' ')
+        sents_list.append(new_sent)
+
+    #sents_df = pd.Series(sents_list)
+    #sents_df.to_csv(mimic_note_file[:-4] + "_sents.csv")
+    print(sents_list)
     
 
 
