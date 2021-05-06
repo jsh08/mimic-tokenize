@@ -22,7 +22,7 @@ def main():
     sents = discharge_tokenize(text)
     '''
 
-    mimic_note_file = sys.argv[1:]
+    mimic_note_file = " ".join(sys.argv[1:])
     #print(mimic_note_file)
 
     #with open(mimic_note_file, 'r') as f:
